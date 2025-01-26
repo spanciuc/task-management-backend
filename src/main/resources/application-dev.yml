@@ -40,7 +40,6 @@ springdoc:
   swagger-ui:
     path: /swagger-ui
     enabled: true
-    disable-swagger-default-url: true
   show-actuator: true
 
 #---------------------------------------------------------------------
