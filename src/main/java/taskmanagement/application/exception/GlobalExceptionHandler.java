@@ -9,6 +9,7 @@ import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import taskmanagement.shared.exception.ApplicationException;
@@ -31,6 +32,7 @@ public class GlobalExceptionHandler {
     private final MessageResolver messageResolver;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ProblemDetail handleMethodArgumentNotValidException(MethodArgumentNotValidException e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_VALIDATION_FAILED, request.getLocale());
         final ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, message);
@@ -48,6 +50,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ProblemDetail handleBadCredentialsException(BadCredentialsException e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_BAD_CREDENTIALS, request.getLocale());
         log.error(e.getMessage(), e);
@@ -55,6 +58,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AuthorizationDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ProblemDetail handleAuthorizationDeniedException(AuthorizationDeniedException e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_ACCESS_DENIED, request.getLocale());
         log.error(e.getMessage(), e);
@@ -62,6 +66,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ValidationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ProblemDetail handleValidationException(ValidationException e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_VALIDATION_FAILED, request.getLocale());
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, message);
@@ -79,6 +84,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ProblemDetail handleResourceNotFoundException(ResourceNotFoundException e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_RESOURCE_NOT_FOUND, request.getLocale());
         log.debug(e.getMessage(), e);
@@ -86,6 +92,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ApplicationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ProblemDetail handleApplicationException(ApplicationException e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_INTERNAL_SERVER_ERROR, request.getLocale());
         log.error(e.getMessage(), e);
@@ -94,6 +101,7 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ProblemDetail handleException(Exception e, WebRequest request) {
         String message = messageResolver.resolve(MessageCode.ERROR_INTERNAL_SERVER_ERROR, request.getLocale());
         log.error(e.getMessage(), e);
