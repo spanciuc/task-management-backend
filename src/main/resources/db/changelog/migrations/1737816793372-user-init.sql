@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset spanciuc:1737643742426-1
+-- changeset spanciuc:1737816793372-1
 CREATE TABLE user_account
 (
     id         UUID         NOT NULL,

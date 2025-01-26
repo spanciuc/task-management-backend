@@ -30,7 +30,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, message);
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         objectMapper.writeValue(response.getOutputStream(), problemDetail);
     }

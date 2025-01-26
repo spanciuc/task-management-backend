@@ -14,12 +14,18 @@ public enum MessageCode {
     ERROR_RESOURCE_NOT_FOUND("error.not_found"),
     ERROR_INTERNAL_SERVER_ERROR("error.internal_server_error"),
 
-    // User validation
+    // User
     VALIDATION_USER_USERNAME_EXISTS("validation.user.username.exists"),
     VALIDATION_USER_USERNAME("validation.user.username"),
     VALIDATION_USER_PASSWORD("validation.user.password"),
     VALIDATION_USER_EMAIL("validation.user.email"),
-    VALIDATION_USER_EMAIL_EXISTS("validation.user.email.exists");
+    VALIDATION_USER_EMAIL_EXISTS("validation.user.email.exists"),
+
+    // Category
+    ERROR_CATEGORY_NOT_FOUND("error.category.not_found"),
+
+    // Task validation
+    ERROR_TASK_NOT_FOUND("error.task.not_found");
 
     private final String code;
 

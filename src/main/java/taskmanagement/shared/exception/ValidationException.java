@@ -11,6 +11,10 @@ public class ValidationException extends ApplicationException {
 
     private final Map<String, MessageCode> validationErrors = new HashMap<>();
 
+    public ValidationException(Map<String, MessageCode> validationErrors) {
+        this(MessageCode.ERROR_VALIDATION_FAILED, validationErrors, null);
+    }
+
     public ValidationException(Map<String, MessageCode> validationErrors, Throwable cause) {
         this(MessageCode.ERROR_VALIDATION_FAILED, validationErrors, cause);
     }
