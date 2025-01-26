@@ -1,0 +1,61 @@
+#---------------------------------------------------------------------
+# Server settings
+#---------------------------------------------------------------------
+server:
+  port: 8080
+  timeZone: "UTC"
+  servlet:
+    context-path: /api
+
+#---------------------------------------------------------------------
+# Spring settings
+#---------------------------------------------------------------------
+spring:
+  application:
+    name: task-management-backend
+  web:
+    locale: "en-US"
+    locale-resolver: fixed
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost/task_management
+    username: postgres
+    password: postgres
+  liquibase:
+    enabled: true
+  h2:
+    console:
+      enabled: false
+
+#---------------------------------------------------------------------
+# SpringDoc settings
+#---------------------------------------------------------------------
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    enabled: true
+  show-actuator: true
+
+#---------------------------------------------------------------------
+# Security settings
+#---------------------------------------------------------------------
+security:
+  jwt:
+    expiration: 86400000
+    secret:
+      key: kVZ01JWk+zT9A8pNU9pDQeOaflR+vNRy5LJWqqoz8RI=
+    authorities:
+      key: autorities
+
+#---------------------------------------------------------------------
+# Logging settings
+#---------------------------------------------------------------------
+logging:
+  level:
+    taskmanagement: info
+    root: info
