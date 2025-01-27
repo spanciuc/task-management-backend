@@ -1,3 +1,11 @@
+# Technologies
+
+* Java 21
+* Spring boot 3.4.1
+* Maven
+* PostgreSQL
+* H2
+
 # Application start
 
 * Run command for dev profile:
